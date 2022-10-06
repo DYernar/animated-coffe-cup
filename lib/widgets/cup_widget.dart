@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:animated_cup/configs/image_config.dart';
 import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
 import 'dart:math' as math;
@@ -53,6 +54,20 @@ class _CupWidgetState extends State<CupWidget> {
         _buildCup(),
         widget.liquidHeight > 0 ? _buildWave() : Container(),
         _buildGlass(),
+        Positioned(
+          top: 100.0,
+          left: MediaQuery.of(context).size.width * 0.5 - 100,
+          child: Container(
+            width: 200,
+            height: 80,
+            color: Colors.lightBlue.withOpacity(0.7),
+            child: Center(
+              child: Image.asset(
+                ImageConfig.logo,
+              ),
+            ),
+          ),
+        ),
         Positioned(
           left: MediaQuery.of(context).size.width * 0.7,
           child: _buildLeftCover(),

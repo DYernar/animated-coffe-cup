@@ -23,11 +23,9 @@ class _CupPageState extends State<CupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text('Animated Cup'),
-      ),
+      backgroundColor: Color.fromARGB(255, 0, 0, 0),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Stack(
             children: [
@@ -36,7 +34,7 @@ class _CupPageState extends State<CupPage> {
                   const SizedBox(height: 70),
                   SizedBox(
                     child: CupWidget(
-                      bgColor: Colors.white,
+                      bgColor: const Color.fromARGB(255, 0, 0, 0),
                       liquidColor: state.getColor,
                       cupMaxHeight: cupMaxHeight,
                       liquidHeight: cupMaxHeight * state.getFilledPercent(),
@@ -89,16 +87,22 @@ class _CupPageState extends State<CupPage> {
               remove();
             });
           },
-          icon: const Icon(Icons.remove),
+          icon: const Icon(
+            Icons.remove,
+            color: Colors.white,
+          ),
         ),
-        Text('$text: $value'),
+        Text('$text: $value', style: const TextStyle(color: Colors.white)),
         IconButton(
           onPressed: () {
             setState(() {
               add();
             });
           },
-          icon: const Icon(Icons.add),
+          icon: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
         ),
       ],
     );

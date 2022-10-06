@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_color_models/flutter_color_models.dart';
 
 class CoffeeModel {
   double _milk = 0.0;
@@ -11,7 +14,41 @@ class CoffeeModel {
   double get water => _water;
   double get coffee => _coffee;
 
-  Color get getColor => Colors.brown;
+  Color get getColor {
+    var coffee = const Color.fromARGB(255, 135, 56, 0);
+    var opacity = 0.0;
+    var minOpacity = 0.3;
+
+    /// opacity increases as coffee increases
+    /// opacity decreases as milk increases
+    /// opacity decreases as water increases
+
+    for (var i = 0; i < _coffee; i += 10) {
+      opacity += 0.4;
+    }
+
+    if (_milk == 0 && _water == 0) {
+      return coffee.withOpacity(1);
+    }
+
+    for (var i = 0; i < _milk; i += 10) {
+      opacity -= 0.03;
+    }
+
+    for (var i = 0; i < _water; i += 10) {
+      opacity -= 0.03;
+    }
+
+    if (opacity < minOpacity) {
+      opacity = minOpacity;
+    }
+
+    if (opacity > 1) {
+      opacity = 1;
+    }
+
+    return coffee.withOpacity(opacity);
+  }
 
   double getFilledPercent() {
     return (_milk + _water + _coffee) / _max;
